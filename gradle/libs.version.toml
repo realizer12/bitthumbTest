@@ -1,0 +1,67 @@
+[versions]
+compileSdk = "33"
+minSdk = "26"
+targetSdk = "33"
+versionCode = "1"
+versionName = "1.0.0"
+buildToolsVersion = "29.0.3"
+applicationId = "com.bithumb.test"
+
+##플러그인 version
+androidGradlePlugin = "8.1.1"
+kotlinAndroidPlugin = "1.9.0"
+
+##테스트용 라이브러리
+junit = "4.13.2"
+androidxTestExtJunit = "1.1.5"
+androidxTestEspressoCore = "3.5.1"
+
+#retrofit 라이브러리 버전
+retrofitVersion = "2.9.0"
+okHttpVersion = "4.11.0"
+
+#glide
+glideVersion = "4.13.2"
+
+#hilt 라이브러리
+hiltVersion = "2.46.1"
+
+androidxCoreKtx = "1.10.1"
+androidxAppcompat = "1.6.1"
+googleAndroidMaterial = "1.9.0"
+androidxConstraintLayout = "2.1.4"
+
+[libraries]
+
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCoreKtx" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
+android-material = { module = "com.google.android.material:material", version.ref = "googleAndroidMaterial" }
+androidx-constraint-layout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidxConstraintLayout" }
+
+##테스트용 라이브러리
+junit = { module = "junit:junit", version.ref = "junit" }
+android-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestExtJunit" }
+android-test-espresso-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxTestEspressoCore" }
+
+#glide
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glideVersion" }
+glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glideVersion" }
+
+#okhttp
+okhttp-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okHttpVersion" }
+
+#retrofit
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
+retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofitVersion" }
+
+
+#di
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltVersion" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinAndroidPlugin" }
+dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinAndroidPlugin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlinAndroidPlugin" }
