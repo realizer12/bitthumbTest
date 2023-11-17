@@ -66,10 +66,10 @@ class MainViewModel @Inject constructor(
                 _errorFlow.emit(Throwable("잠시후 다시 시도 해주세요"))
                 return@launch
             }
-            currentPage++
             photoRepository.getPhoto(currentPage).collectLatest { result ->
                 when {
                     result.isSuccess -> {
+                        currentPage++//성공적으로 가져왓으니까 다음페이지 get을 위해 1올려줌.
                         val finalResult = result.getOrDefault(emptyList()).map { it.fromData() }
                         _photoList.emit(_photoList.value.plus(finalResult).distinctBy { it.id })
                     }
