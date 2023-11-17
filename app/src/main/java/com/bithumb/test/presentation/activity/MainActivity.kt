@@ -67,7 +67,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
             launch {
                 mainViewModel.photoList.collectLatest {
-                    photoListRvAdapter.submitList(it)
+                    photoListRvAdapter.submitList(it){
+
+                        //마지막 리스트로 scroll 해줌.
+                        binding.rvPhotoList.scrollToPosition(it.lastIndex)
+                    }
                 }
             }
         }
