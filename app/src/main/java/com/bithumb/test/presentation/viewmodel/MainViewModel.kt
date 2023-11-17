@@ -6,6 +6,7 @@ import com.bithumb.test.data.repository.PhotoRepository
 import com.bithumb.test.presentation.model.PhotoPresentationModel
 import com.bithumb.test.presentation.model.PhotoPresentationModel.Companion.fromData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
@@ -50,6 +51,11 @@ class MainViewModel @Inject constructor(
             //getphoto block 시키기
             delay(getPhotoBlockDuration)
         }
+    }
+
+    //제목으로 오름차순 하기
+    fun sortWithTitle() = viewModelScope.launch(Dispatchers.IO){
+        _photoList.emit(_photoList.value.sortedBy { it.title })
     }
 
 

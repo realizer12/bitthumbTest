@@ -52,7 +52,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
         //sort 버튼 클릭
         binding.btnSort.setOnClickListener {
-            showToast("sort")
+           mainViewModel.sortWithTitle()
         }
     }
 
