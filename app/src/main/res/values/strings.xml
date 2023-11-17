@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">test</string>
+    <string name="read">read</string>
+    <string name="clear">clear</string>
+    <string name="sort">sort</string>
+    <string name="temporary_block">잠시후 다시 시도 해주세요</string>
 </resources>

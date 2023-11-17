@@ -33,6 +33,12 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.JVM_TARGET
     }
+    buildFeatures {
+        buildConfig = true
+    }
+    dataBinding {
+        enable = true
+    }
 }
 
 dependencies {
@@ -42,9 +48,25 @@ dependencies {
     implementation(libs.android.material)
     implementation(libs.androidx.constraint.layout)
 
+    //android ktx -> 확장 및 고차 기능과 같은 기능을 활용하여, kotlin 보다 관용적으로 만드는 것을 목표
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.recyclerview)
+
+
     //hilt di 적용
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+
+    //glide
+    implementation(libs.glide)
+    kapt(libs.glide.compiler)
+
+    //retrofit 추가
+    implementation(libs.bundles.retrofit)
+
+    //okhttp
+    implementation(libs.okhttp.logging.interceptor)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.android.test.ext.junit)
