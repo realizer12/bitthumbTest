@@ -68,6 +68,11 @@ dependencies {
     //okhttp
     implementation(libs.okhttp.logging.interceptor)
 
+    //mockk
+    testImplementation(libs.mockk)
+    androidTestImplementation(libs.mockk.android)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.android.test.ext.junit)
     androidTestImplementation(libs.android.test.espresso.espresso.core)

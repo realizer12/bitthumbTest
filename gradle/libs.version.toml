@@ -5,7 +5,8 @@ targetSdk = "33"
 versionCode = "1"
 versionName = "1.0.0"
 buildToolsVersion = "29.0.3"
-applicationId = "com.bithumb.test"
+applicationId = "com.bithumb.realizer12"
+
 
 #ktx
 fragmentKtxVersion = "1.6.2"
@@ -21,6 +22,7 @@ kotlinAndroidPlugin = "1.9.0"
 junit = "4.13.2"
 androidxTestExtJunit = "1.1.5"
 androidxTestEspressoCore = "3.5.1"
+mockkVersion = "1.13.8"
 
 #retrofit 라이브러리 버전
 retrofitVersion = "2.9.0"
@@ -37,6 +39,7 @@ androidxAppcompat = "1.6.1"
 googleAndroidMaterial = "1.9.0"
 androidxConstraintLayout = "2.1.4"
 
+
 [libraries]
 
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCoreKtx" }
@@ -50,6 +53,9 @@ androidx-recyclerview = {module = "androidx.recyclerview:recyclerview", version.
 junit = { module = "junit:junit", version.ref = "junit" }
 android-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestExtJunit" }
 android-test-espresso-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxTestEspressoCore" }
+
+mockk = { module = "io.mockk:mockk", version.ref = "mockkVersion" }
+mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockkVersion" }
 
 #glide
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glideVersion" }
