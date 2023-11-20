@@ -14,6 +14,15 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+/**
+ * Create Date: 2023/11/20
+ *
+ *
+ * 메인 화면 activity
+ * @author LeeDongHun
+ *
+ *
+ **/
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
@@ -52,7 +61,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
         //sort 버튼 클릭
         binding.btnSort.setOnClickListener {
-           mainViewModel.sortWithTitle()
+            mainViewModel.sortWithTitle()
         }
     }
 
