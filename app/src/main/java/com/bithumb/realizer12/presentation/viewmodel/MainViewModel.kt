@@ -8,6 +8,7 @@ import com.bithumb.realizer12.presentation.model.PhotoPresentationModel.Companio
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -37,7 +38,7 @@ class MainViewModel @Inject constructor(
     private val _photoList = MutableStateFlow<List<PhotoPresentationModel>>(emptyList())
     val photoList = _photoList.asStateFlow()
 
-    private var currentPage = 0
+    private var currentPage = -1
 
     private lateinit var getPhotoJob: Job
     private lateinit var clearPhotoJob: Job
@@ -71,10 +72,10 @@ class MainViewModel @Inject constructor(
                 _errorFlow.emit(Throwable("잠시후 다시 시도 해주세요"))
                 return@launch
             }
+            currentPage++//
             photoRepository.getPhoto(currentPage).collectLatest { result ->
                 when {
                     result.isSuccess -> {
-                        currentPage++//성공적으로 가져왓으니까 다음페이지 get을 위해 1올려줌.
                         val finalResult = result.getOrDefault(emptyList()).map { it.fromData() }
                         _photoList.emit(_photoList.value.plus(finalResult).distinctBy { it.id })
                     }
