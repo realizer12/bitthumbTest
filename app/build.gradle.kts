@@ -53,7 +53,6 @@ dependencies {
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.recyclerview)
 
-
     //hilt di 적용
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
@@ -76,4 +75,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.android.test.ext.junit)
     androidTestImplementation(libs.android.test.espresso.espresso.core)
+    testImplementation(libs.coroutine.test)
 }

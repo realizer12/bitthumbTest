@@ -1,5 +1,6 @@
 package com.bithumb.realizer12.data.datasource.remote.impl
 
+import androidx.annotation.VisibleForTesting
 import com.bithumb.realizer12.data.datasource.remote.PhotoRemoteDataSource
 import com.bithumb.realizer12.data.datasource.remote.retrofit.ApiService
 import com.bithumb.realizer12.data.model.PhotoDataModel
@@ -8,10 +9,23 @@ import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import javax.inject.Inject
 
+/**
+ * Create Date: 2023/11/20
+ *
+ *
+ * photo 관련 remote 기능들이 구현된 class
+ *
+ * @see PhotoRemoteDataSource
+ * @author LeeDongHun
+ *
+ **/
 class PhotoRemoteDataSourceImpl @Inject constructor(
     private val apiService: ApiService
-):PhotoRemoteDataSource{
-    override suspend fun getPhotoList(pageStart:Int,pageLimit:Int): Flow<Result<List<PhotoDataModel>>> = flow {
+):PhotoRemoteDataSource {
+    override suspend fun getPhotoList(
+        pageStart: Int,
+        pageLimit: Int
+    ): Flow<Result<List<PhotoDataModel>>> = flow {
         runCatching {
             apiService.getPhotoList(pageStart = pageStart, pageLimit = pageLimit)
         }.onSuccess {
@@ -21,7 +35,12 @@ class PhotoRemoteDataSourceImpl @Inject constructor(
         }
     }
 
-    private fun <T : Any> handleApi(
+
+
+
+    //가이드상은 안좋은 방법
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    fun <T : Any> handleApi(
         response: Response<T>,
     ): Result<T> {
         return try {

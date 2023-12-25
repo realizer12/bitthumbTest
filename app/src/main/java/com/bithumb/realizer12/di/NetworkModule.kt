@@ -14,6 +14,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+/**
+ * Create Date: 2023/11/20
+ *
+ *
+ * network(retrofit)
+ * 관련 의존성 주입 모듈
+ *
+ * @author LeeDongHun
+ *
+ *
+ **/
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {

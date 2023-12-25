@@ -8,6 +8,7 @@ import com.bithumb.realizer12.presentation.model.PhotoPresentationModel.Companio
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,11 +18,17 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
+/**
+ * Create Date: 2023/11/20
+ *
+ * 메인 뷰모델
+ * @author LeeDongHun
+ *
+ **/
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val photoRepository: PhotoRepository
-):ViewModel() {
+) : ViewModel() {
 
     //error 처리
     private val _errorFlow = MutableSharedFlow<Throwable>()
@@ -31,16 +38,16 @@ class MainViewModel @Inject constructor(
     private val _photoList = MutableStateFlow<List<PhotoPresentationModel>>(emptyList())
     val photoList = _photoList.asStateFlow()
 
-    private var currentPage = 0
+    private var currentPage = -1
 
     private lateinit var getPhotoJob: Job
     private lateinit var clearPhotoJob: Job
 
     //photo 리스트 clear 하기
-    fun clearPhotoList(getPhotoBlockDuration:Long) {
-        clearPhotoJob = viewModelScope.launch{
+    fun clearPhotoList(getPhotoBlockDuration: Long) {
+        clearPhotoJob = viewModelScope.launch {
             //현재 photo 가져오기  진행중이면 cancel 처리 해줌.
-            if(::getPhotoJob.isInitialized && getPhotoJob.isActive){
+            if (::getPhotoJob.isInitialized && getPhotoJob.isActive) {
                 getPhotoJob.cancel()
             }
             //다시 page Reset
@@ -53,31 +60,32 @@ class MainViewModel @Inject constructor(
     }
 
     //제목으로 오름차순 하기
-    fun sortWithTitle() = viewModelScope.launch(Dispatchers.IO){
+    fun sortWithTitle() = viewModelScope.launch(Dispatchers.IO) {
         _photoList.emit(_photoList.value.sortedBy { it.title })
     }
 
 
     //새 photo 가져오기
-   fun getNewPhoto(){
+    fun getNewPhoto() {
         getPhotoJob = viewModelScope.launch {
-            if(::clearPhotoJob.isInitialized && clearPhotoJob.isActive){
+            if (::clearPhotoJob.isInitialized && clearPhotoJob.isActive) {
                 _errorFlow.emit(Throwable("잠시후 다시 시도 해주세요"))
                 return@launch
             }
+            currentPage++//
             photoRepository.getPhoto(currentPage).collectLatest { result ->
                 when {
                     result.isSuccess -> {
-                        currentPage++//성공적으로 가져왓으니까 다음페이지 get을 위해 1올려줌.
                         val finalResult = result.getOrDefault(emptyList()).map { it.fromData() }
                         _photoList.emit(_photoList.value.plus(finalResult).distinctBy { it.id })
                     }
-                    result.isFailure ->{
+
+                    result.isFailure -> {
                         result.exceptionOrNull()?.let { _errorFlow.emit(it) }
                     }
                 }
             }
         }
-   }
+    }
 
 }

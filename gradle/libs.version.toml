@@ -39,6 +39,8 @@ androidxAppcompat = "1.6.1"
 googleAndroidMaterial = "1.9.0"
 androidxConstraintLayout = "2.1.4"
 
+#코루틴
+coroutineversion = "1.6.4"
 
 [libraries]
 
@@ -53,6 +55,7 @@ androidx-recyclerview = {module = "androidx.recyclerview:recyclerview", version.
 junit = { module = "junit:junit", version.ref = "junit" }
 android-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestExtJunit" }
 android-test-espresso-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxTestEspressoCore" }
+coroutine-test = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-test",version.ref = "coroutineversion"}
 
 mockk = { module = "io.mockk:mockk", version.ref = "mockkVersion" }
 mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockkVersion" }

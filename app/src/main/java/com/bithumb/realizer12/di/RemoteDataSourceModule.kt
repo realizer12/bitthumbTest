@@ -9,6 +9,15 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+
+/**
+ * Create Date: 2023/11/20
+ *
+ *
+ * remote datasource 의존성 주입  모듈
+ * @author LeeDongHun
+ *
+ **/
 @Module
 @InstallIn(SingletonComponent::class)
 object RemoteDataSourceModule {
@@ -17,6 +26,6 @@ object RemoteDataSourceModule {
     @Provides
     fun providePhotoRemoteDataSource(
         apiService: ApiService
-    ):PhotoRemoteDataSource = PhotoRemoteDataSourceImpl(apiService = apiService)
+    ): PhotoRemoteDataSource = PhotoRemoteDataSourceImpl(apiService = apiService)
 
 }
